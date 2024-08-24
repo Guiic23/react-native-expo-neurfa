@@ -9,7 +9,7 @@ export default function App() {
     
     <View style={styles.container}>
       <Text style={styles.title}>Aplicativo</Text>
-      <Button title="Signin Super" onPress={() => signIn({email: "gusuper@gmail.com", password:"gui123"})} />
+      <Button title="Signin Super" onPress={() => signIn({email: "guisuper@gmail.com", password:"gui123"})} />
       <Button title="Signin Adm" onPress={() => signIn({email: "guiadm@gmail.com", password:"gui123"})} />
       <Button title="Signin User" onPress={() => signIn({email: "guiuser@gmail.com", password:"gui123"})} />
       <Button title="Signout" onPress={() => signOut()} />
