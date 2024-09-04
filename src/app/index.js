@@ -1,17 +1,50 @@
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, Text, View } from 'react-native';
 import { useAuth } from '../hooks/Auth';
+import { router } from 'expo-router';
 
 export default function App() {
-  const {signIn, signOut} = useAuth();
+  const { signIn, signOut } = useAuth();
+
+  const handleEntrarSuper = async () => {
+    try {
+      await signIn({ email: "guisuper@gmail.com", password: "gui123" })
+      router.replace("/");
+    } catch (error) {
+      console.log(e);
+
+    }
+  };
+
+  const handleEntrarAdm = async () => {
+    try {
+      await signIn({ email: "guiadm@gmail.com", password: "gui123" })
+      router.replace("/");
+    } catch (error) {
+      console.log(e);
+
+    }
+  };
+
+  const handleEntrarUser = async() => {
+    try {
+      await signIn({ email: "guiuser@gmail.com", password: "gui123" })
+      router.replace("/");
+    } catch (error) {
+      console.log(e);
+
+    }
+  };
+ 
+  
 
   return (
-    
+
     <View style={styles.container}>
       <Text style={styles.title}>Aplicativo</Text>
-      <Button title="Signin Super" onPress={() => signIn({email: "guisuper@gmail.com", password:"gui123"})} />
-      <Button title="Signin Adm" onPress={() => signIn({email: "guiadm@gmail.com", password:"gui123"})} />
-      <Button title="Signin User" onPress={() => signIn({email: "guiuser@gmail.com", password:"gui123"})} />
+      <Button title="Signin Super" onPress={(handleEntrarSuper)} />
+      <Button title="Signin Adm" onPress={(handleEntrarAdm)}/>
+      <Button title="Signin User" onPress={(handleEntrarUser)} />
       <Button title="Signout" onPress={() => signOut()} />
       <StatusBar style="auto" />
     </View>
