@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { BackHandler, Button, StyleSheet, Text, View } from 'react-native';
 import { useAuth } from '../hooks/Auth';
 import { router } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function App() {
   const { signIn, signOut } = useAuth();
@@ -42,9 +43,10 @@ export default function App() {
 
     <View style={styles.container}>
       <Text style={styles.title}>Aplicativo</Text>
+      <View>
+       <Ionicons name="logo-react" size={100} color="black" />
+      </View>
       <Button title="Signin Super" onPress={(handleEntrarSuper)} />
-      <Button title="Signin Adm" onPress={(handleEntrarAdm)}/>
-      <Button title="Signin User" onPress={(handleEntrarUser)} />
        <Button title="Sobre" onPress={() => {router.push("/about")}} />
       <Button title="Sair do Aplicativo" onPress={() => {BackHandler.exitApp()}} />
      
