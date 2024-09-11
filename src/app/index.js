@@ -11,7 +11,7 @@ export default function App() {
       await signIn({ email: "guisuper@gmail.com", password: "gui123" })
       router.replace("/");
     } catch (error) {
-      console.log(e);
+      console.log(error);
 
     }
   };
@@ -21,7 +21,7 @@ export default function App() {
       await signIn({ email: "guiadm@gmail.com", password: "gui123" })
       router.replace("/");
     } catch (error) {
-      console.log(e);
+      console.log(error);
 
     }
   };
@@ -31,7 +31,7 @@ export default function App() {
       await signIn({ email: "guiuser@gmail.com", password: "gui123" })
       router.replace("/");
     } catch (error) {
-      console.log(e);
+      console.log(error);
 
     }
   };

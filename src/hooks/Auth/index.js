@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-
+import { useUsersDatabase } from "../../database/useUsersDatabase";
 // Definindo as possíveis roles de usuário
 const AuthContext = createContext({});
 
@@ -16,54 +16,27 @@ export function AuthProvider({ children }) {
         user: null,
         role: null,
     });
+    const {authUser} = useUsersDatabase(); // Corrigido para usar a função authUser
 
     // Função de login
     const signIn = async ({ email, password }) => {
-        if (email === "guisuper@gmail.com" && password === "gui123") {
-            // Se as credenciais forem de um super usuário
-            return setUser({
-                authenticated: true,
-                user: {
-                    id: 1,
-                    name: 'Super User',
-                    email
-                },
-                role: Role.SUPER // Corrigido para usar a constante Role
-            });
+        const response = await authUser({ email, password });
 
-        } else if (email === "guiadm@gmail.com" && password === "gui123") {
-            // Se as credenciais forem de um admin
-            return setUser({
-                authenticated: true,
-                user: {
-                    id: 2,
-                    name: 'User Adm',
-                    email
-                },
-                role: Role.ADM // Corrigido para usar a constante Role
-            });
-
-        } else if (email === "guiuser@gmail.com" && password === "gui123") {
-            // Se as credenciais forem de um usuário comum
-            return setUser({
-                authenticated: true,
-                user: {
-                    id: 3,
-                    name: 'User',
-                    email
-                },
-                role: Role.USER // Corrigido para usar a constante Role
-            });
-
-        } else {
-            // Credenciais inválidas
-            return setUser({
+        if(!response){
+           setUser({
                 authenticated: false,
                 user: null,
-                role: null
+                role: null,
             });
         }
-    };
+
+           setUser({
+                authenticated: true,
+                user: response,
+                role: response, // Corrigido para usar a constante Role
+            });
+
+       };
 
     // Função de logout
     const signOut = async () => {
