@@ -3,9 +3,16 @@ import { BackHandler, Button, StyleSheet, Text, View } from 'react-native';
 import { useAuth } from '../hooks/Auth';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { TextInput } from 'react-native';
+import { useState } from 'react';
 
 export default function App() {
+
   const { signIn, signOut } = useAuth();
+  const [email, setEmail] = useState("guisuper@gmail.com");
+  const [password, setPassword] = useState("gui123");
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+  
 
   const handleEntrarSuper = async () => {
     try {
@@ -43,9 +50,18 @@ export default function App() {
 
     <View style={styles.container}>
       <Text style={styles.title}>Aplicativo</Text>
-      <View>
-       <Ionicons name="logo-react" size={100} color="black" />
+      <View style={styles.inputbox}>
+       <Ionicons name="mail-open-outline" size={20} color="black" />
+        <TextInput style={styles.emailinput} placeholder="E-mail" value={email} onChangeText={setEmail}/> 
+        
       </View>
+      <View style={styles.inputbox}>
+       <Ionicons name="lock-closed-outline" size={20} color="black" />
+        <TextInput style={styles.emailinput} placeholder="Senha" value={password} onChangeText={setPassword}/> 
+        <Ionicons name="eye-outline" size={20} color="black"  />
+        
+      </View>
+    
       <Button title="Signin Super" onPress={(handleEntrarSuper)} />
        <Button title="Sobre" onPress={() => {router.push("/about")}} />
       <Button title="Sair do Aplicativo" onPress={() => {BackHandler.exitApp()}} />
@@ -65,7 +81,21 @@ const styles = StyleSheet.create({
     gap:15,
   },
   title: {
-    fontFamily: "bold",
+    fontFamily: "light",
     fontSize: 20,
+  },
+  inputbox: {
+    flexDirection: "row",
+    alignItems: "center",
+    margin: 40,
+    justifyContent: "center",
+    gap: 15,
+
+  },
+  emailinput: {
+    flex: 1,
+    fontFamily: "regular",
+    fontSize: 20,
+   
   },
 });
