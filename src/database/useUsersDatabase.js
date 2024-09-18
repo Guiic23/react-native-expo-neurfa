@@ -4,7 +4,7 @@ export function useUsersDatabase() {
     const database = useSQLiteContext();
 
     async function authUser({ email, password }) {
-        console.log("authUser email:", email, " - password:", password);
+        //console.log("authUser email:", email, " - password:", password);
 
         try {
             // Corrigido: Consulta SQL com a sintaxe correta e parâmetros de consulta
