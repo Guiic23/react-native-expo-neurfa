@@ -21,6 +21,7 @@ export function AuthProvider({ children }) {
     // Função de login
     const signIn = async ({ email, password }) => {
         const response = await authUser({ email, password });
+        console.log(!response);
 
         if(!response){
            setUser({
@@ -28,7 +29,9 @@ export function AuthProvider({ children }) {
                 user: null,
                 role: null,
             });
+           throw new Error('Usuário ou senha inválidos');
         }
+       
 
            setUser({
                 authenticated: true,

@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { BackHandler, Button, StyleSheet, Text, View } from 'react-native';
+import { Alert, BackHandler, Button, StyleSheet, Text, View } from 'react-native';
 import { useAuth } from '../hooks/Auth';
 import { router } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
@@ -12,14 +12,18 @@ export default function App() {
   const [email, setEmail] = useState("guisuper@gmail.com");
   const [password, setPassword] = useState("gui123");
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const tooglePasswordVisibility = () => {
+    setPasswordVisibility(!passwordVisibility);
+  }
   
 
   const handleEntrarSuper = async () => {
     try {
-      await signIn({ email: "guisuper@gmail.com", password: "gui123" })
+      await signIn({ email, password })
       router.replace("/");
     } catch (error) {
       console.log(error);
+      Alert.alert("Erro", error.message);
 
     }
   };
@@ -36,9 +40,10 @@ export default function App() {
 
   const handleEntrarUser = async() => {
     try {
-      await signIn({ email: "guiuser@gmail.com", password: "gui123" })
+      await signIn({ email, password })
       router.replace("/");
     } catch (error) {
+      Alert.alert("Erro", error.message);
       console.log(error);
 
     }
@@ -57,12 +62,12 @@ export default function App() {
       </View>
       <View style={styles.inputbox}>
        <Ionicons name="lock-closed-outline" size={20} color="black" />
-        <TextInput style={styles.emailinput} placeholder="Senha" value={password} onChangeText={setPassword}/> 
-        <Ionicons name="eye-outline" size={20} color="black"  />
+        <TextInput style={styles.emailinput} placeholder="Senha" value={password} onChangeText={setPassword} secureTextEntry={passwordVisibility} /> 
+        <Ionicons name={passwordVisibility ? "eye-off-outline" : "eye-outline"} size={20} color="black" onPress={tooglePasswordVisibility}  />
         
       </View>
     
-      <Button title="Signin Super" onPress={(handleEntrarSuper)} />
+      <Button  style={styles.button}  title="Signin Super" onPress={(handleEntrarSuper)} />
        <Button title="Sobre" onPress={() => {router.push("/about")}} />
       <Button title="Sair do Aplicativo" onPress={() => {BackHandler.exitApp()}} />
      
@@ -87,9 +92,9 @@ const styles = StyleSheet.create({
   inputbox: {
     flexDirection: "row",
     alignItems: "center",
-    margin: 40,
-    justifyContent: "center",
-    gap: 15,
+    marginHorizontal:40,
+    marginVertical:10,
+    gap: 10,
 
   },
   emailinput: {
@@ -98,4 +103,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
    
   },
+  button: {
+    
+  }
 });
