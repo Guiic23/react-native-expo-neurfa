@@ -42,14 +42,11 @@ export function AuthProvider({ children }) {
        loadStorageData();
     }, []);
 
-    useEffect(() => {
-        console.log('AuthProvider:', user);
-    }, [user]);
-
+  
     // Função de login
     const signIn = async ({ email, password }) => {
         const response = await authUser({ email, password });
-        console.log(!response);
+        
 
         if(!response){
            setUser({
@@ -78,9 +75,7 @@ export function AuthProvider({ children }) {
     };
 
     // Apenas para verificar no console as mudanças no estado de autenticação
-    useEffect(() => {
-        console.log('AuthProvider:', user);
-    }, [user]);
+  
     if (user.authenticated === null) {
         return (
           <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
