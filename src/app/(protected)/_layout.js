@@ -33,7 +33,7 @@ function CustomDrawerContent(props) {
           textAlign: "center",
           fontFamily: "regular"
         }}>
-          {user.user.name}
+          {user?.user?.name}
         </Text>
       </View>
 
