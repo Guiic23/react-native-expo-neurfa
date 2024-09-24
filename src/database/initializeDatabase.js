@@ -1,11 +1,13 @@
 export async function initializeDatabase(database) {
     try {
         // Criação da tabela
+       
         await database.execAsync(`
-            DROP TABLE IF EXISTS users;
-        `);
+            DROP TABLE IF EXISTS payments;
 
-        await database.execAsync(`
+            DROP TABLE IF EXISTS users;
+           
+
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT,
@@ -14,6 +16,20 @@ export async function initializeDatabase(database) {
                 role TEXT NOT NULL DEFAULT 'user',
                 created_at DATE DEFAULT CURRENT_TIMESTAMP,
                 updated_at DATE
+            );
+            CREATE TABLE IF NOT EXISTS payments (
+              id INTEGER PRIMARY KEY AUTOINCREMENT,
+              user_id INTEGER NOT NULL,
+              user_cadastro INTERGER NOT NULL,
+              valor_pago REAL NOT NULL,
+                valor_total REAL NOT NULL,
+                data_pagamento DATE NOT NULL,
+                observacao TEXT,
+                created_at DATE DEFAULT CURRENT_TIMESTAMP,
+                updated_at DATE,
+                FOREIGN KEY(user_id) REFERENCES users(id),
+                FOREIGN KEY(user_cadastro) REFERENCES users(id)
+
             );
         `);
 
