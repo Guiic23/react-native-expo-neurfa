@@ -11,6 +11,7 @@ export async function initializeDatabase(database) {
             CREATE TABLE IF NOT EXISTS users (
                 id INTEGER PRIMARY KEY AUTOINCREMENT,
                 name TEXT,
+                curso TEXT,
                 email TEXT NOT NULL UNIQUE,
                 senha TEXT NOT NULL DEFAULT 'gui123',
                 role TEXT NOT NULL DEFAULT 'user',
