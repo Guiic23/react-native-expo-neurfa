@@ -19,10 +19,13 @@ function CustomDrawerContent(props) {
 
       >
         <Image style={{
-          height: 100,
-          width: 100,
-          borderRadius: 50,
-          margin: 10
+    height: 100,
+    width: 100,
+    borderRadius: 50,
+    margin: 10,
+    borderColor: "#000",
+    borderWidth: 2, // Adicione esta linha
+    borderStyle: 'solid', // Esta linha é opcional, mas pode ser útil
         }}
           source={{
             uri: "https://www.github.com/Guiic23.png"
