@@ -1,6 +1,6 @@
 import { router } from "expo-router";
-import { Button, Text, TextInput, View } from "react-native";
-import { useState } from "react";
+import { Button, KeyboardAvoidingView, Platform, Text, TextInput, View } from "react-native";
+import { useEffect, useRef, useState } from "react";
 import { StyleSheet } from "react-native";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Picker } from '@react-native-picker/picker';
@@ -118,6 +118,7 @@ export default function Payment() {
     const [data, setData] = useState(new Date());
     const [viewCalendar, setViewCalendar] = useState(false);
     const [observacao, setObservacao] = useState("");   
+    const valueRef = useRef();
 
 
 
@@ -128,14 +129,33 @@ export default function Payment() {
         setViewCalendar(false);
 
     };
+    useEffect(() => {
+        valueRef?.current?.focus();
+       
+    },[]);
+
+    const handleChangeValor = (value) => {
+        const  valorLimpo = value.replace( ",", ".").replace( ",","");
+        console.log("Valor Limpo :", valorLimpo);
+        const valorConvertido = Number(valorLimpo) / 100; 
+        console.log("Valor Convertido :", valorConvertido);
+        if (valorConvertido === 0 || isNaN(valorConvertido)) {
+            setValor("0,00");
+            return;
+        };
+        let valorPtBR = Intl.NumberFormat('pt-BR', { style: "decimal", minimumFractionDigits: 2 }).format(valorConvertido);
+
+       
+    };
 
 
     return (
-        <View style={styles.content}>
+        <KeyboardAvoidingView style={{flex: 1}} behavior={Platform.OS === "ios" ? "padding": "height"}>
+           <View style={styles.content}>
             <Text>Inserir Pagamentos</Text>
             <View style={styles.inputView}>
                 <Ionicons name="wallet-outline" size={24} color="black" />
-                <TextInput placeholder="Valor" keyboardType="decimal-pad" style={styles.inputValor} value={valor} onChangeText={setValor} />
+                <TextInput placeholder="Valor" keyboardType="decimal-pad" style={styles.inputValor} value={valor} onChangeText={(newValue)=> handleChangeValor(newValue)} ref={valueRef} />
             </View>
 
             <View style={styles.inputView}>
@@ -176,6 +196,7 @@ export default function Payment() {
                 <Button title="Cancelar" onPress={() => router.back()} />
             </View>
         </View>
+        </KeyboardAvoidingView>
     );
 }
 const styles = StyleSheet.create({
