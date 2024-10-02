@@ -135,20 +135,20 @@ export default function Payment() {
     },[]);
 
     const handleChangeValor = (value) => {
-        const  valorLimpo = value.replace( ",", ".").replace( ",","");
-        //console.log("Valor Limpo :", valorLimpo);
-        const valorConvertido = Number(valorLimpo) / 100; 
-        //console.log("Valor Convertido :", valorConvertido);
+       try {
+        let valorLimpo = value.replace(",", "").replace(".", "");
+        let valorConvertido = Number(valorLimpo) / 100;
         if (valorConvertido === 0 || isNaN(valorConvertido)) {
             setValor("0,00");
             return;
         }
-        let valorPtBR = Intl.NumberFormat('pt-BR',
-             { style: "decimal",
-             minimumFractionDigits: 2, 
-            }).format(valorConvertido);
-            setValor(valorPtBR);
+        let valorPtBR = Intl.NumberFormat("pt-BR", {style: "decimal", maximumFractionDigits:2,}).format(valorConvertido);
+        setValor(valorPtBR);
 
+       } catch (error) {
+              setValor("0,00");
+          
+       }
        
     };
 
