@@ -136,14 +136,18 @@ export default function Payment() {
 
     const handleChangeValor = (value) => {
         const  valorLimpo = value.replace( ",", ".").replace( ",","");
-        console.log("Valor Limpo :", valorLimpo);
+        //console.log("Valor Limpo :", valorLimpo);
         const valorConvertido = Number(valorLimpo) / 100; 
-        console.log("Valor Convertido :", valorConvertido);
+        //console.log("Valor Convertido :", valorConvertido);
         if (valorConvertido === 0 || isNaN(valorConvertido)) {
             setValor("0,00");
             return;
-        };
-        let valorPtBR = Intl.NumberFormat('pt-BR', { style: "decimal", minimumFractionDigits: 2 }).format(valorConvertido);
+        }
+        let valorPtBR = Intl.NumberFormat('pt-BR',
+             { style: "decimal",
+             minimumFractionDigits: 2, 
+            }).format(valorConvertido);
+            setValor(valorPtBR);
 
        
     };
