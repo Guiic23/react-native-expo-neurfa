@@ -1,27 +1,30 @@
+import { Tabs } from "expo-router";
 import { useState } from "react";
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { FontAwesome } from "@expo/vector-icons";
+import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { Image, StyleSheet, Text, View } from "react-native";
 import PagerView from "react-native-pager-view";
 
-
-export function Banner() {
-
+export default function Layout() {
     const [page, setPage] = useState(0);
 
     const onPageSelected = (e) => {
         setPage(e.nativeEvent.position);
     };
+
     return (
         <View style={styles.container}>
             <PagerView initialPage={0} style={styles.content} onPageSelected={onPageSelected}>
                 <View key="1" style={styles.page}>
-                    <Image source={require("../../assets/images/banner1.png")} style={{ width: "100%", height: 200 }} />
+                    <Image source={require("../../../assets/images/banner1.png")} style={{ width: "100%", height: 200 }} />
                 </View>
                 <View key="2" style={styles.page}>
 
-                    <Image source={require("../../assets/images/banner2.png")} style={{ width: "100%", height: 200 }} />
+                    <Image source={require("../../../assets/images/banner2.png")} style={{ width: "100%", height: 200 }} />
                 </View>
                 <View key="3" style={styles.page}>
-                    <Image source={require("../../assets/images/banner3.png")} style={{ width: "100%", height: 200 }} />
+                    <Image source={require("../../../assets/images/banner3.png")} style={{ width: "100%", height: 200 }} />
                 </View>
             </PagerView>
             <View style={styles.bulletContent}>
@@ -39,15 +42,15 @@ export function Banner() {
             }}>
 
                 <View style={styles.cat}>
-                    <Image source={require("../../assets/images/cat1.png")} style={{ width: 90, height: 100, marginTop: -10, }} />
+                    <Image source={require("../../../assets/images/cat1.png")} style={{ width: 90, height: 100, marginTop: -10, }} />
                     <Text style={{ fontSize: 15, fontFamily: "bold", }}>Pé</Text>
                 </View>
                 <View style={styles.cat}>
-                    <Image source={require("../../assets/images/cat2.png")} style={{ width: 90, height: 100, marginTop: -10, }} />
+                    <Image source={require("../../../assets/images/cat2.png")} style={{ width: 90, height: 100, marginTop: -10, }} />
                     <Text style={{ fontSize: 15, fontFamily: "bold", }}>Costas</Text>
                 </View>
                 <View style={styles.cat}>
-                    <Image source={require("../../assets/images/cat3.png")} style={{ width: 90, height: 100, marginTop: -10, }} />
+                    <Image source={require("../../../assets/images/cat3.png")} style={{ width: 90, height: 100, marginTop: -10, }} />
                     <Text style={{ fontSize: 15, fontFamily: "bold", }}>Facial</Text>
                 </View>
             </View>
@@ -56,10 +59,30 @@ export function Banner() {
                  <View style={styles.prod}></View>
                  <View style={styles.prod}></View>
                  <View style={styles.prod}></View>
+
+                 
             </View>
+            <Tabs>
+                <Tabs.Screen
+                    name="index"
+                    options={{
+                        title: 'Home',
+                        tabBarIcon: ({ color }) => <FontAwesome size={28} name="home" color={color} />,
+                    }}
+                />
+                <Tabs.Screen
+                    name="profile"
+                    options={{
+                        title: "Perfil",
+                        tabBarIcon: ({ color }) => <MaterialCommunityIcons name="account-circle-outline" size={28} color={color} />
+                    }}
+                />
+            </Tabs>
 
         </View>
 
+           
+        
     );
 }
 const styles = StyleSheet.create({

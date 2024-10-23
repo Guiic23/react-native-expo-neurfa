@@ -2,9 +2,21 @@ import { router } from "expo-router";
 import { Button, KeyboardAvoidingView, Platform, Text, TextInput, View } from "react-native";
 import { useEffect, useRef, useState } from "react";
 import { StyleSheet } from "react-native";
+import { z } from "zod";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Picker } from '@react-native-picker/picker';
 import DateTimePicker from '@react-native-community/datetimepicker';
+
+const paymentsSchema = z.object({
+    valor_pago: z.number().gte(0),
+    user_id: z.number().int().positive(),
+    user_cadastro: z.number().int().positive(),
+    data_pagamento : z.date(),
+    observacao: z.string(),
+    
+
+
+});
 
 export default function Payment() {
     const [valor, setValor] = useState("0,00");
@@ -150,6 +162,11 @@ export default function Payment() {
           
        }
        
+    };
+
+    const handleSubmit= async () => {
+        const payment = {
+
     };
 
 
