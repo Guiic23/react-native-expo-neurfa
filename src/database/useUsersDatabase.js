@@ -4,22 +4,31 @@ export function useUsersDatabase() {
     const database = useSQLiteContext();
 
     async function authUser({ email, password }) {
-        //console.log("authUser email:", email, " - password:", password);
-
+        // console.log("authUser email: ", email, " - password: " , password);
         try {
-            // Corrigido: Consulta SQL com a sintaxe correta e parâmetros de consulta
-            const result = await database.getFirstAsync(
-                `SELECT id, name, email, role FROM users WHERE email = ? AND senha = ?`,
-                [email, password]
-            );
-            return result;
+            const result = await database.getFirstAsync(`
+                SELECT id, nome, email, role FROM users where email='${email}' and senha='${password}'
+            `);
+            return result
         } catch (error) {
-            console.error("useUsersDatabase authUser error:", error);
+            console.error("useUsersDatabase authUser error: ", error);
+            throw error;
+        }
+    }
+
+    async function getAllUsers() {
+        try {
+            const result = await database.getAllAsync(`
+                SELECT id, nome FROM users
+            `);
+            return result
+        } catch (error) {
+            console.error("useUsersDatabase getAllUsers error: ", error);
             throw error;
         }
     }
 
     return {
-        authUser,
+        authUser, getAllUsers,
     };
 }
