@@ -13,7 +13,7 @@ function CustomDrawerContent(props) {
       <View style={{ marginTop: 20, justifyContent: "center", alignItems: "center", backgroundColor: "#f0f1f9", paddingVertical: 10 }}>
         <Image
           source={{
-            uri: 'https://avatars.githubusercontent.com/u/155779046?v=4',
+            uri: 'https://avatars.githubusercontent.com/u/160981090?v=4&size=64',
           }}
           style={{ width: 100, height: 100, borderRadius: 50, alignSelf: "center" }}
         />
