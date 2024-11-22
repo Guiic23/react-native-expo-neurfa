@@ -22,7 +22,7 @@ function CustomDrawerContent(props) {
       <DrawerContentScrollView {...props}>
         <DrawerItemList {...props} />
       </DrawerContentScrollView>
-      <TouchableOpacity onPress={() => signOut()} style={{ justifyContent: "center", alignItems: "center", height: 50, margin: 10, backgroundColor: "#e57c3a", borderRadius: 5, }}>
+      <TouchableOpacity onPress={() => signOut()} style={{ justifyContent: "center", alignItems: "center", height: 50, margin: 10, backgroundColor: "#000fff", borderRadius: 5, }}>
 
         <Text style={{ color: "white", fontFamily: "bold" }} >Sair da Conta</Text>
       </TouchableOpacity>

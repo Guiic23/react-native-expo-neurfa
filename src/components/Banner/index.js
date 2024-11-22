@@ -49,7 +49,7 @@ export function Banner() {
                     fontFamily: 'bold',
                     marginTop: 20,
                     textAlign: 'center',
-                }}>Mês do Sci-fi</Text>
+                }}></Text>
             </View>
         </View>
     );
@@ -57,12 +57,13 @@ export function Banner() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1
+        flex: 1,
+        backgroundColor: '#fff',
     },
 
     content: {
         marginTop: 10,
-        height: 250,
+        height: 200,
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
@@ -100,7 +101,7 @@ const styles = StyleSheet.create({
     },
     bannerImage: {
         width: '100%',
-        height: 250,
+        height: 200,
         borderRadius: 10,
         marginTop: 50,
     }

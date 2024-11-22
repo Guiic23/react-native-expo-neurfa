@@ -27,7 +27,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Letterbox</Text>
+      <Text style={styles.title}>Neurfa</Text>
       <View style={styles.inputbox}>
         <Ionicons name="mail-open-outline" size={20} color="black" />
         <TextInput style={styles.emailinput} placeholder="E-mail" value={email} onChangeText={setEmail} />
@@ -37,9 +37,9 @@ export default function App() {
         <TextInput style={styles.emailinput} placeholder="Senha" value={password} onChangeText={setPassword} secureTextEntry={passwordVisibility} />
         <Ionicons name={passwordVisibility ? "eye-off-outline" : "eye-outline"} size={20} color="black" onPress={tooglePasswordVisibility} />
       </View>
-      <Button title="Entrar" onPress={handleEntrarSuper} color="#9cd6c8" />
-      <Button title="Sobre" onPress={() => router.push("about")} color="#fac055" />
-      <Button title="Sair do aplicativo" onPress={() => BackHandler.exitApp()} color="#e57c3a" />
+      <Button title="Entrar" onPress={handleEntrarSuper} color="#000fff" />
+      <Button title="Sobre" onPress={() => router.push("about")} color="#000fff" />
+      <Button title="Sair do aplicativo" onPress={() => BackHandler.exitApp()} color="#000fff" />
       <StatusBar style="auto" />
     </View>
   );

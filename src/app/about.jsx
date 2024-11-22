@@ -36,7 +36,6 @@ export default function About() {
             paddingVertical: 5,
             margin: 80,
         }}>
-           Gustavo Santos Gomes, tenho 17 anos, sou aluno da ETEC de Presidente Venceslau, curso o 2º ano do ensino médio integrado ao técnico em informática.
         </Text>
         <TouchableOpacity 
                 onPress={() => {router.back()}} 
