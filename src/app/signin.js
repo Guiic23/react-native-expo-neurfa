@@ -27,7 +27,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Neurfa</Text>
+      <Text style={styles.title}>App pronto para usar🎉</Text>
       <View style={styles.inputbox}>
         <Ionicons name="mail-open-outline" size={20} color="black" />
         <TextInput style={styles.emailinput} placeholder="E-mail" value={email} onChangeText={setEmail} />
@@ -37,9 +37,10 @@ export default function App() {
         <TextInput style={styles.emailinput} placeholder="Senha" value={password} onChangeText={setPassword} secureTextEntry={passwordVisibility} />
         <Ionicons name={passwordVisibility ? "eye-off-outline" : "eye-outline"} size={20} color="black" onPress={tooglePasswordVisibility} />
       </View>
-      <Button title="Entrar" onPress={handleEntrarSuper} color="#000fff" />
-      <Button title="Sobre" onPress={() => router.push("about")} color="#000fff" />
-      <Button title="Sair do aplicativo" onPress={() => BackHandler.exitApp()} color="#000fff" />
+      <Button title="Entrar" onPress={handleEntrarSuper} color="#4caf50" />
+      <Button title="Sobre" onPress={() => router.push("about")} color="#6a1b9a" />
+      <Button title="Sair do aplicativo" onPress={() => BackHandler.exitApp()} color="#d32f2f" />
+      <Button title="Banco de dados" onPress={() => router.push("/maintenance")} />
       <StatusBar style="auto" />
     </View>
   );
@@ -48,34 +49,32 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f9f9f9', 
+    backgroundColor: '#f9f9f9', // Cor de fundo suave
     alignItems: 'center',
     justifyContent: 'center',
     gap: 15,
-    padding: 20, 
+    padding: 20, // Adiciona espaçamento nas laterais
   },
   title: {
     fontFamily: "regular",
-    fontSize: 24, 
-    fontWeight: 'bold', 
-    color: '#333', 
+    fontSize: 24, // Aumenta o tamanho da fonte
+    fontWeight: 'bold', // Deixa o título em negrito
+    color: '#333', // Cor do texto
   },
   inputbox: {
     flexDirection: "row",
     gap: 10,
     marginVertical: 10,
     alignItems: "center",
-    borderWidth: 1,        
-    borderColor: '#ccc',  
-    borderRadius: 8,      
-    paddingHorizontal: 10, 
-    paddingVertical: 5,    
+    borderBottomWidth: 1, // Linha embaixo dos campos
+    borderBottomColor: '#ccc', // Cor da linha
+    paddingBottom: 5, // Espaçamento interno inferior
   },
   emailinput: {
     flex: 1,
     fontFamily: "regular",
     fontSize: 20,
-    paddingVertical: 10, 
+    paddingVertical: 10, // Adiciona espaçamento vertical
   },
   button: {
     width: "100%",

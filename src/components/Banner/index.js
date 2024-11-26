@@ -15,7 +15,7 @@ export function Banner() {
             <PagerView initialPage={0} style={styles.content} onPageSelected={onPageSelected}>
                 <View key="1" style={styles.page}>
                     <Image
-                        source={{ uri: 'https://www.radiocacula.com.br/wp-content/uploads/2023/12/870886.jpg' }}
+                        source={{ uri: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTh8fHxlbnwwfHx8fHw%3D' }}
                         style={styles.bannerImage}
                         resizeMode="cover"
                     />
@@ -23,7 +23,7 @@ export function Banner() {
                 </View>
                 <View key="2" style={styles.page}>
                     <Image
-                        source={{ uri: 'https://media.gazetadopovo.com.br/2015/09/2b33b116ba95cf5827dce2f2dafd3e18-gpLarge.jpg' }}
+                        source={{ uri: 'https://img.freepik.com/fotos-premium/trafego-de-rodas-de-tecnologia-classica-de-automovel-moderno_665346-119.jpg' }}
                         style={styles.bannerImage}
                         resizeMode="cover"
                     />
@@ -31,7 +31,7 @@ export function Banner() {
                 </View>
                 <View key="3" style={styles.page}>
                     <Image
-                        source={{ uri: 'https://assets.mubicdn.net/images/film/22845/image-w1280.jpg?1543863611' }}
+                        source={{ uri: 'https://wallpapers.com/images/featured/imagens-de-carros-em-4k-g6a4f0e15hkua5oa.jpg' }}
                         style={styles.bannerImage}
                         resizeMode="cover"
                     />
@@ -49,7 +49,7 @@ export function Banner() {
                     fontFamily: 'bold',
                     marginTop: 20,
                     textAlign: 'center',
-                }}></Text>
+                }}>Páginal principal, aqui você pode interagir com os banners.</Text>
             </View>
         </View>
     );
@@ -57,13 +57,12 @@ export function Banner() {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
+        flex: 1
     },
 
     content: {
         marginTop: 10,
-        height: 200,
+        height: 250,
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
@@ -101,7 +100,7 @@ const styles = StyleSheet.create({
     },
     bannerImage: {
         width: '100%',
-        height: 200,
+        height: 250,
         borderRadius: 10,
         marginTop: 50,
     }
