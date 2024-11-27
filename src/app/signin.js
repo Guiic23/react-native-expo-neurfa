@@ -1,24 +1,23 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, BackHandler, Button, StyleSheet, Text, TextInput, View } from 'react-native';
-import { useAuth } from '../hooks/Auth';
-import { router } from 'expo-router';
+import { Alert, BackHandler, StyleSheet, Text, TextInput, TouchableOpacity, View, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
+import { useAuth } from '../hooks/Auth';
+import { router } from 'expo-router';
 
 export default function App() {
-  const { signIn, signOut } = useAuth();
+  const { signIn } = useAuth();
   const [email, setEmail] = useState("super@email.com");
   const [password, setPassword] = useState("A123456a!");
   const [passwordVisibility, setPasswordVisibility] = useState(true);
 
-  const tooglePasswordVisibility = () => {
+  const togglePasswordVisibility = () => {
     setPasswordVisibility(!passwordVisibility);
   };
 
   const handleEntrarSuper = async () => {
     try {
       await signIn({ email, password });
-      // router.replace("/");
     } catch (error) {
       Alert.alert("Erro", error.message);
       console.log(error);
@@ -27,21 +26,58 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>App pronto para usar🎉</Text>
-      <View style={styles.inputbox}>
-        <Ionicons name="mail-open-outline" size={20} color="black" />
-        <TextInput style={styles.emailinput} placeholder="E-mail" value={email} onChangeText={setEmail} />
+      <StatusBar style="light" />
+      <Image source={require("../assets/icon.png")} style={styles.logo} />
+      <Text style={styles.title}>Bem-vindo à Loja Online</Text>
+      <Text style={styles.subtitle}>Faça login para continuar</Text>
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="mail-outline" size={24} color="#888" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="E-mail"
+          value={email}
+          onChangeText={setEmail}
+          keyboardType="email-address"
+          autoCapitalize="none"
+        />
       </View>
-      <View style={styles.inputbox}>
-        <Ionicons name="lock-closed-outline" size={20} color="black" />
-        <TextInput style={styles.emailinput} placeholder="Senha" value={password} onChangeText={setPassword} secureTextEntry={passwordVisibility} />
-        <Ionicons name={passwordVisibility ? "eye-off-outline" : "eye-outline"} size={20} color="black" onPress={tooglePasswordVisibility} />
+
+      <View style={styles.inputContainer}>
+        <Ionicons name="lock-closed-outline" size={24} color="#888" style={styles.icon} />
+        <TextInput
+          style={styles.input}
+          placeholder="Senha"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={passwordVisibility}
+          autoCapitalize="none"
+        />
+        <Ionicons
+          name={passwordVisibility ? "eye-off-outline" : "eye-outline"}
+          size={24}
+          color="#888"
+          style={styles.iconToggle}
+          onPress={togglePasswordVisibility}
+        />
       </View>
-      <Button title="Entrar" onPress={handleEntrarSuper} color="#4caf50" />
-      <Button title="Sobre" onPress={() => router.push("about")} color="#6a1b9a" />
-      <Button title="Sair do aplicativo" onPress={() => BackHandler.exitApp()} color="#d32f2f" />
-      <Button title="Banco de dados" onPress={() => router.push("/maintenance")} />
-      <StatusBar style="auto" />
+
+      <TouchableOpacity onPress={() => Alert.alert("Esqueceu sua senha?", "Função ainda não implementada.")}>
+        <Text style={styles.forgotPassword}>Esqueceu sua senha?</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.loginButton} onPress={handleEntrarSuper}>
+        <Text style={styles.loginButtonText}>Entrar</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.registerButton} onPress={() => router.push("register")}>
+        <Text style={styles.registerButtonText}>Criar conta</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.exitButton} onPress={() => BackHandler.exitApp()}>
+        <Ionicons name="exit-outline" size={20} color="#888" />
+        <Text style={styles.exitButtonText}>Sair do aplicativo</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -49,34 +85,95 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f9f9f9', // Cor de fundo suave
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: 15,
-    padding: 20, // Adiciona espaçamento nas laterais
+    backgroundColor: "#ffffff",
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 20,
+  },
+  logo: {
+    width: 100,
+    height: 100,
+    marginBottom: 20,
+    resizeMode: "contain",
   },
   title: {
-    fontFamily: "regular",
-    fontSize: 24, // Aumenta o tamanho da fonte
-    fontWeight: 'bold', // Deixa o título em negrito
-    color: '#333', // Cor do texto
+    fontSize: 28,
+    fontWeight: "bold",
+    color: "#333",
+    marginBottom: 8,
   },
-  inputbox: {
+  subtitle: {
+    fontSize: 16,
+    color: "#666",
+    marginBottom: 24,
+  },
+  inputContainer: {
     flexDirection: "row",
-    gap: 10,
-    marginVertical: 10,
     alignItems: "center",
-    borderBottomWidth: 1, // Linha embaixo dos campos
-    borderBottomColor: '#ccc', // Cor da linha
-    paddingBottom: 5, // Espaçamento interno inferior
-  },
-  emailinput: {
-    flex: 1,
-    fontFamily: "regular",
-    fontSize: 20,
-    paddingVertical: 10, // Adiciona espaçamento vertical
-  },
-  button: {
+    backgroundColor: "#f9f9f9",
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 10,
+    paddingHorizontal: 12,
+    marginBottom: 16,
     width: "100%",
+    height: 50,
+  },
+  input: {
+    flex: 1,
+    fontSize: 16,
+    color: "#333",
+    paddingHorizontal: 10,
+  },
+  icon: {
+    marginRight: 8,
+  },
+  iconToggle: {
+    marginLeft: 8,
+  },
+  forgotPassword: {
+    fontSize: 14,
+    color: "#007bff",
+    textDecorationLine: "underline",
+    marginBottom: 24,
+  },
+  loginButton: {
+    backgroundColor: "#007bff",
+    paddingVertical: 12,
+    borderRadius: 8,
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    marginBottom: 16,
+  },
+  loginButtonText: {
+    fontSize: 16,
+    color: "#fff",
+    fontWeight: "bold",
+  },
+  registerButton: {
+    paddingVertical: 12,
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: "#007bff",
+    alignItems: "center",
+    justifyContent: "center",
+    width: "100%",
+    marginBottom: 16,
+  },
+  registerButtonText: {
+    fontSize: 16,
+    color: "#007bff",
+    fontWeight: "bold",
+  },
+  exitButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginTop: 16,
+  },
+  exitButtonText: {
+    fontSize: 14,
+    color: "#888",
+    marginLeft: 8,
   },
 });

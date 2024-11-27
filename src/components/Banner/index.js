@@ -44,12 +44,7 @@ export function Banner() {
                 <View style={[styles.bullet, page === 2 && styles.activeBullet]}></View>
             </View>
             <View>
-                <Text style={{
-                    fontSize: 20,
-                    fontFamily: 'bold',
-                    marginTop: 20,
-                    textAlign: 'center',
-                }}>Páginal principal, aqui você pode interagir com os banners.</Text>
+               
             </View>
         </View>
     );
@@ -62,17 +57,20 @@ const styles = StyleSheet.create({
 
     content: {
         marginTop: 10,
-        height: 250,
+        height: 220,
         alignItems: 'center',
         justifyContent: 'center',
         width: '100%',
+        borderRadius:12,
+        
+
     },
 
     page: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#fff',
-        padding: 10,
+       
+        padding: 5,
     },
 
     bulletContent: {
@@ -100,8 +98,8 @@ const styles = StyleSheet.create({
     },
     bannerImage: {
         width: '100%',
-        height: 250,
-        borderRadius: 10,
+        height: 220,
+        borderRadius:15,
         marginTop: 50,
     }
 });

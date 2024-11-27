@@ -13,7 +13,7 @@ function CustomDrawerContent(props) {
       <View style={{ marginTop: 20, justifyContent: "center", alignItems: "center", backgroundColor: "#f0f0f0", paddingVertical: 10 }}>
         <Image
           source={{
-            uri: 'https://www.github.com/KauaMarmol.png',
+            uri: 'https://avatars.githubusercontent.com/u/160981090?v=4',
           }}
           style={{ width: 100, height: 100, borderRadius: 50, alignSelf: "center" }}
         />
@@ -29,14 +29,34 @@ function CustomDrawerContent(props) {
     </View>
   );
 }
+const Neurfatext = () => {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text style={{ fontSize: 20, fontFamily: "bold" }}>Neurfa</Text>
+    </View>
+  );
+}
 
 const DrawerLayout = () => {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Drawer drawerContent={(props) => <CustomDrawerContent {...props} />}>
+      <Drawer  screenOptions={
+        {
+          headerTitle: "Neurfa",
+          headerTitleAlign: "center",
+          headerStyle:{fontSize: 40},
+          headerStyle: { backgroundColor: "#f0f0f0" },
+          headerTitleStyle: { fontFamily: "bold" },
+          headerRight: () => (
+            <TouchableOpacity onPress={() => alert("Abrir Carrinho")}>
+              <Ionicons name="cart-outline" size={40} color="black" style={{ marginRight: 30 }} />
+            </TouchableOpacity>
+          ),
+        }
+      }  drawerContent={(props) => <CustomDrawerContent {...props} />}>
         <Drawer.Screen
           name="index"
-          options={{ drawerLabel: "Principal", headerTitle: "Principal", drawerIcon: () => (<Ionicons name="home-outline" size={20} color="black" />), }}
+          options={{ drawerLabel: "Inicio", headerTitle: "Neurfa", drawerIcon: () => (<Ionicons name="home-outline" size={20} color="black" />), }}
         />
         <Drawer.Screen
           name="list"
