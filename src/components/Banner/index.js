@@ -14,19 +14,21 @@ export function Banner() {
         <View style={styles.container}>
             <PagerView initialPage={0} style={styles.content} onPageSelected={onPageSelected}>
                 <View key="1" style={styles.page}>
-                    <Image
-                        source={{ uri: 'https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTh8fHxlbnwwfHx8fHw%3D' }}
-                        style={styles.bannerImage}
-                        resizeMode="cover"
-                    />
+                <Image
+                 source={require('../../assets/Banner1.png')} 
+                 style={styles.bannerImage}
+                 resizeMode="cover"
+/>
+
                     <Text style={styles.text}>Banner 1</Text>
                 </View>
                 <View key="2" style={styles.page}>
-                    <Image
-                        source={{ uri: 'https://img.freepik.com/fotos-premium/trafego-de-rodas-de-tecnologia-classica-de-automovel-moderno_665346-119.jpg' }}
-                        style={styles.bannerImage}
-                        resizeMode="cover"
-                    />
+                <Image
+    source={require('../../assets/Banner2.png')} 
+    style={styles.bannerImage}
+    resizeMode="cover"
+/>
+
                     <Text style={styles.text}>Banner 2</Text>
                 </View>
                 <View key="3" style={styles.page}>

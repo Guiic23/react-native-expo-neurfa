@@ -27,8 +27,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <Image source={require("../assets/icon.png")} style={styles.logo} />
-      <Text style={styles.title}>Bem-vindo à Loja Online</Text>
+      <Image source={require("../assets/logo.png")} style={styles.logo} />
+      <Text style={styles.title}>Bem-vindo a Neurfa</Text>
       <Text style={styles.subtitle}>Faça login para continuar</Text>
 
       <View style={styles.inputContainer}>

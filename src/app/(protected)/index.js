@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { Banner } from "../../components/Banner";
 
 const products = [
-  { id: 1, name: "Produto A", price: 49.99, image: require("../../assets/icon.png"), description: "Descrição detalhada do Produto A", rating: 4.5, isNew: true },
+  { id: 1, name: "Massageador Facial", price: 49.99, image: require("../../assets/massa.jpg"), description: "Descrição detalhada ", rating: 4.5, isNew: true },
   { id: 2, name: "Produto B", price: 99.99, image: require("../../assets/icon.png"), description: "Descrição detalhada do Produto B", rating: 3.8, isNew: false },
   { id: 3, name: "Produto C", price: 29.99, image: require("../../assets/icon.png"), description: "Descrição detalhada do Produto C", rating: 4.2, isNew: false },
   { id: 4, name: "Produto D", price: 159.99, image: require("../../assets/icon.png"), description: "Descrição detalhada do Produto D", rating: 5, isNew: true },
@@ -46,6 +46,10 @@ export default function Home() {
     </View>
   );
 
+  const calculateTotal = () => {
+    return cartItems.reduce((total, item) => total + item.price, 0).toFixed(2);
+  };
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
       {/* Barra de pesquisa */}
@@ -59,7 +63,6 @@ export default function Home() {
         />
       </View>
       <Banner />
-     
 
       {/* Lista de produtos */}
       <FlatList
@@ -76,12 +79,16 @@ export default function Home() {
       {/* Carrinho */}
       <View style={styles.cartContainer}>
         <Text style={styles.cartText}>
-          {cartItems.length} item(s) no carrinho
+          {cartItems.length} {cartItems.length === 1 ? "item" : "itens"} no carrinho
+        </Text>
+        <Text style={styles.cartTotalText}>
+          Total: R$ {calculateTotal()}
         </Text>
         <TouchableOpacity
           style={styles.cartButton}
           onPress={() => alert("Abrir Carrinho")}
         >
+          <Ionicons name="cart" size={20} color="#fff" style={styles.cartIcon} />
           <Text style={styles.cartButtonText}>Ir para o Carrinho</Text>
         </TouchableOpacity>
       </View>
@@ -201,22 +208,35 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 10,
     elevation: 5,
+    alignItems: "center",
   },
   cartText: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#333",
+    marginBottom: 10,
+  },
+  cartTotalText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    color: "#1e90ff",
+    marginBottom: 20,
   },
   cartButton: {
     backgroundColor: "#1e90ff",
     paddingVertical: 12,
     paddingHorizontal: 20,
     borderRadius: 25,
-    marginTop: 10,
+    flexDirection: "row",
+    alignItems: "center",
   },
   cartButtonText: {
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
+    marginLeft: 10,
+  },
+  cartIcon: {
+    marginRight: 10,
   },
 });
